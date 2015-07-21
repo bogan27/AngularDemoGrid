@@ -1,0 +1,148 @@
+/* Basic Application */
+
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+
+body {
+    font: 16px/26px  Helvetica Neue;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.wrapper {
+    width: 94%;
+    margin: 0 3%;
+    padding: 0 0;
+}
+@media only screen and (min-width: 1140px) {
+
+    .wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        margin: 0 auto;
+    }
+}
+
+/* ===================
+    Attivio Theme
+   =================== */
+
+.header-container {
+	margin: 0 0 0 0 ;
+	width: 1045px;
+	height: 98px;
+
+    background: rgb(255,255,255);
+    border-bottom: 3px rgb(5,78,154) solid;
+    padding-top: 10px;
+}
+.header_logo {
+	width: 350px;
+	float: right;
+}
+.header_title {
+	width: 300px;
+	height: 98px;
+	float:left
+}
+.header_title h1 {
+	padding: 24px 0 0 0;
+	margin: 0 0 0 0;
+	width: 300px;
+	height: 98px;
+	color: rgb(5,78,154);
+}
+.side-bar {
+	width: 160px;
+	height: 650px;
+	padding: 0 8px 0 8px;
+	margin: 0 0 0 0;
+	float: left;
+	overflow:auto;
+	background: rgb(5,78,154);
+}
+.side-bar h1 {
+	color: white;
+	font: 16px Helvectica Neue;
+	padding: 0 0 0 0 ;
+	margin: 0 0 0 0 ;
+	margin-top: 16px;
+	margin-bottom: 2px;
+	
+}
+.side-bar p {
+	color: rgb(200,200,200);
+	font: 12px Helvectica Neue;
+	padding: 0 0 0 0 ;
+	margin: 0 0 0 0 ;
+	padding-top: 2px;
+
+}
+.body-container {
+	padding: 0 0 0 10px;
+	float:right;
+	width:  840px;
+	height: 650px;
+	overflow: auto;
+}
+
+
+.title {
+    color: white;
+    height: 40px;
+   
+    margin-left: 1.7%;
+
+}
+/* ============ Search Bar ================= */
+
+.search-bar {
+	height: 40px;
+	margin-left: 1.7%;
+}
+
+/* ============ Navigation Menu ============ */
+
+nav {
+	position: relative;
+    float: right;
+    width: 35%;
+}
+    
+
+
+nav li:last-child a {
+        margin-right: 0;
+}
+
+
+
+
+
+
+
+
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 {
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
