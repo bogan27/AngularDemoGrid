@@ -70,22 +70,26 @@ body {
 	overflow:auto;
 	background: rgb(5,78,154);
 }
-.side-bar h1 {
+.side-bar th {
 	color: white;
 	font: 16px Helvectica Neue;
-	padding: 0 0 0 0 ;
-	margin: 0 0 0 0 ;
-	margin-top: 16px;
-	margin-bottom: 2px;
+	text-align: left;
 	
 }
-.side-bar p {
+.side-bar th .filter-and, .filter-not {
+	color: white;
+	font: 10px Helvectica Neue;
+	text-align: right;
+	
+}
+.side-bar td {
 	color: rgb(200,200,200);
-	font: 12px Helvectica Neue;
-	padding: 0 0 0 0 ;
-	margin: 0 0 0 0 ;
-	padding-top: 2px;
-
+	font: 10px Helvectica Neue;
+}
+.side-bar td .filter-and, .filter-not {
+	color: rgb(200,200,200);
+	font: 10px Helvectica Neue;
+	text-align: right;
 }
 .body-container {
 	padding: 0 0 0 10px;
