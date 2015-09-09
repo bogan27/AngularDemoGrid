@@ -1,131 +1,141 @@
 /* Basic Application */
 
-
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 
 
 body {
-    font: 16px/26px  Helvetica Neue;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+  font: 16px/26px  Helvetica Neue;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 .wrapper {
-    width: 94%;
-    margin: 0 3%;
-    padding: 0 0;
+  width: 94%;
+  margin: 0 3%;
+  padding: 0 0;
 }
 @media only screen and (min-width: 1140px) {
 
-    .wrapper {
-        width: 1026px; /* 1140px - 10% for margins */
-        margin: 0 auto;
-    }
+  .wrapper {
+    width: 1026px; /* 1140px - 10% for margins */
+    margin: 0 auto;
+  }
 }
 
 /* ===================
-    Attivio Theme
-   =================== */
+Attivio Theme
+=================== */
 
 .header-container {
-	margin: 0 0 0 0 ;
-	width: 1045px;
-	height: 98px;
+  margin: 0 0 0 0 ;
+  width: 1045px;
+  height: 110px;
 
-    background: rgb(255,255,255);
-    border-bottom: 3px rgb(5,78,154) solid;
-    padding-top: 10px;
+  background: rgb(255,255,255);
+  border-bottom: 3px rgb(5,78,154) solid;
+  padding-top: 10px;
 }
 .header_logo {
-	width: 350px;
-	float: right;
+  width: 350px;
+  float: right;
+  padding: 5px 0 0 0;
 }
 .header_title {
-	width: 300px;
-	height: 98px;
-	float:left
+  width: 500px;
+  /*height: 98px;*/
+  float:left
 }
 .header_title h1 {
-	padding: 24px 0 0 0;
-	margin: 0 0 0 0;
-	width: 300px;
-	height: 98px;
-	color: rgb(5,78,154);
+  padding: 5px 0 3px 0;
+  margin: 0 0 5px 0;
+  /*width: 300px;*/
+  /*height: 98px;*/
+  color: rgb(5,78,154);
+}
+.search-box {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  font-size: 18px;
 }
 .side-bar {
-	width: 160px;
-	height: 650px;
-	padding: 0 8px 0 8px;
-	margin: 0 0 0 0;
-	float: left;
-	overflow:auto;
-	background: rgb(5,78,154);
+  width: 160px;
+  height: 650px;
+  padding: 0 8px 0 8px;
+  margin: 0 0 0 0;
+  float: left;
+  overflow:auto;
+  background: rgb(5,78,154);
+}
+.facet-bar {
+  color:white;
 }
 .side-bar th {
-	color: white;
-	font: 16px Helvectica Neue;
-	text-align: left;
-	
+  color: white;
+  font: 16px Helvectica Neue;
+  text-align: left;
+
 }
 .side-bar th .filter-and, .filter-not {
-	color: white;
-	font: 10px Helvectica Neue;
-	text-align: right;
-	
+  color: white;
+  font: 10px Helvectica Neue;
+  text-align: right;
+
 }
 .side-bar td {
-	color: rgb(200,200,200);
-	font: 10px Helvectica Neue;
+  color: rgb(200,200,200);
+  font: 10px Helvectica Neue;
 }
 .side-bar td .filter-and, .filter-not {
-	color: rgb(200,200,200);
-	font: 10px Helvectica Neue;
-	text-align: right;
+  color: rgb(200,200,200);
+  font: 12px Helvectica Neue;
+  text-align: right;
 }
 .body-container {
-	padding: 0 0 0 10px;
-	float:right;
-	width:  840px;
-	height: 650px;
-	overflow: auto;
+  position:absolute;
+  padding: 0 0 0 170px;
+  float:right;
+  width:  1045px;
+  height: 650px;
+  overflow: auto;
 }
 
 
 .title {
-    color: white;
-    height: 40px;
-   
-    margin-left: 1.7%;
+  color: white;
+  height: 40px;
+
+  margin-left: 1.7%;
 
 }
 /* ============ Search Bar ================= */
 
 .search-bar {
-	height: 40px;
-	margin-left: 1.7%;
+  height: 40px;
+  margin-left: 1.7%;
 }
 
 /* ============ Navigation Menu ============ */
 
 nav {
-	position: relative;
-    float: right;
-    width: 35%;
+  position: absolute;
+  float: right;
+  width: 35%;
+  z-index: 2;
 }
-    
+
 
 
 nav li:last-child a {
-        margin-right: 0;
+  margin-right: 0;
 }
 
 
@@ -137,16 +147,21 @@ nav li:last-child a {
 
 
 /* ===============
-    ALL: IE Fixes
-   =============== */
+ALL: IE Fixes
+=============== */
 
 .ie7 {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
+/* Random Styling By Brandon */
+.demo-thumbnail {
+  height: 160px;
+  width: 200px;
+  padding-top: 20px;
+}
 
-
-
-
-
-
+.demoUrl {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  color: #494949;
+}
