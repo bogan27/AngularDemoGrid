@@ -73,7 +73,7 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   var createUrl = function(){
     // var head = "http://acevm0625.lab.attivio.com:17000/rest/searchApi/simpleCgi?q=";
     var head = "http://acevm0625.lab.attivio.com/DemoGrid/search?q=";
-    setSearchText();
+    //setSearchText();
     var q = $scope.searchText.replace(/ /g, "+");
     var tail = "&workflow=searchScripts";
     var facetPart = constructFacetFilters();
