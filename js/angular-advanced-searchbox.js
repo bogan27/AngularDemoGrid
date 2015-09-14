@@ -25,10 +25,9 @@ angular.module('angular-advanced-searchbox', [])
                 '$scope', '$rootScope','$attrs', '$element', '$timeout', '$filter',
                 function ($scope, $rootScope, $attrs, $element, $timeout, $filter) {
 
-                    $scope.facets = $rootScope.facets;
                     $scope.placeholder = $scope.placeholder || 'Search ...';
                     $scope.searchParams = [];
-                    $scope.searchQuery = '';
+                    $scope.searchQuery = '*';
                     $scope.setSearchFocus = false;
                     var searchThrottleTimer;
                     var changeBuffer = [];
@@ -65,14 +64,10 @@ angular.module('angular-advanced-searchbox', [])
 
                     $scope.searchParamValueChanged = function (param) {
                         updateModel('change', param.key, param.value);
-                        console.log()
-                        $rootScope.updateSearchParams();
                     };
 
                     $scope.searchQueryChanged = function (query) {
                         updateModel('change', 'query', query);
-                        console.log("searchQueryChanged was called with: " + query);
-                        $rootScope.search();
                     };
 
                     $scope.enterEditMode = function(index) {
@@ -93,8 +88,6 @@ angular.module('angular-advanced-searchbox', [])
                         // remove empty search params
                         if (!searchParam.value)
                             $scope.removeSearchParam(index);
-
-                        $rootScope.search();
                     };
 
                     $scope.typeaheadOnSelect = function (item, model, label) {

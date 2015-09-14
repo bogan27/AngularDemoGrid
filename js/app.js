@@ -5,14 +5,19 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   window.rootScope = $rootScope;
 
   $scope.searchText = "*";
-
+  $rootScope.initSearch = function(text) {
+    $scope.searchText = text;
+    $scope.search();
+  };
   $scope.search = function(){
     if(!$scope.facets){
       $scope.initFacets();
     }
-    if(typeof $scope.searchParams !== "undefined"){
-      $scope.updateSearchParams();
-    }
+    $scope.updateSearchParams();
+    // if(!angular.isUndefined($scope.searchParams) && !angular.isUndefined($scope.searchParams['query'])){
+    //   $scope.searchText = $scope.searchParams['query'];
+    // }
+
     var url = createUrl();
     //url = encodeURIComponent(url);
     // if(!$rootScope.authString){
@@ -31,30 +36,29 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   $rootScope.search = $scope.search;
 
   $scope.updateSearchParams = function(){
-    if(typeof $scope.searchParams['query'] !== "undefined"){
-      $scope.searchText = $scope.searchParams['query'];
-    }
-    if(typeof $scope.searchParams['vertical'] !== "undefined"){
-      $scope.facets[0].deactivateAll();
-      $scope.facets[0].setSingleActiveValue($scope.searchParams['vertical']);
-    }
-    if(typeof $scope.searchParams['feature'] !== "undefined"){
-      $scope.facets[0].deactivateAll();
-      $scope.facets[1].setSingleActiveValue($scope.searchParams['feature']);
-    }
-    if(typeof $scope.searchParams['demoType'] !== "undefined"){
-      $scope.facets[0].deactivateAll();
-      $scope.facets[2].setSingleActiveValue($scope.searchParams['demoType']);
+    if(!angular.isUndefined($scope.searchParams)){
+      if(!angular.isUndefined($scope.searchParams['query'])){
+        $scope.searchText = $scope.searchParams['query'];
+      }
+      if(!angular.isUndefined($scope.searchParams['vertical'])){
+        $scope.facets[0].setSingleActiveValue($scope.searchParams['vertical']);
+      }
+      if(!angular.isUndefined($scope.searchParams['feature'])){
+        $scope.facets[1].setSingleActiveValue($scope.searchParams['feature']);
+      }
+      if(!angular.isUndefined($scope.searchParams['demoType'])){
+        $scope.facets[2].setSingleActiveValue($scope.searchParams['demoType']);
+      }
     }
   };
 
   $rootScope.updateSearchParams = $scope.updateSearchParams;
 
   $scope.availableSearchParams = [
-    { key: "filename", name: "File Name", placeholder: "Name..." },
     { key: "vertical", name: "Vertical", placeholder: "Vertical..." },
     { key: "feature", name: "Feature", placeholder: "Feature..." },
-    { key: "demoType", name: "Demo Type", placeholder: "Demo type..." }
+    { key: "demoType", name: "Demo Type", placeholder: "Demo type..." },
+    { key: "filename", name: "File Name", placeholder: "Name..." }
   ];
   //
   // var createAuthString = function(username, password){
@@ -332,6 +336,7 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
       val = this.values[v];
       val.active = false;
     }
+    this.activeValues = [];
   };
 
   Facet.prototype.setActiveValues = function(){
@@ -347,6 +352,7 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   Facet.prototype.setSingleActiveValue = function(displayName){
     displayName = displayName.trim();
     var updateComplete = false;
+    this.deactivateAll();
     this.activeValues = [];
     for (v in this.values){
       val = this.values[v];

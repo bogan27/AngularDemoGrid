@@ -12,6 +12,8 @@
     background-color: #fff;
     cursor: text;
     line-height: 38px;
+    width: 400px;
+    float: left;
 }
 
     .advancedSearchBox.active {

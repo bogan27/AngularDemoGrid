@@ -38,51 +38,59 @@
       <h1 class="title">Demonstrations</h1>
       <!-- The Search Box Area -->
       <!-- <label class="search-box">
-        <b>Search Demos: </b><input class="search-input" type="text" ng-model="searchText" ng-change="search()">
-      </label> -->
-      <!-- <search-box align="left"></search-box> -->
+      <b>Search Demos: </b><input class="search-input" type="text" ng-model="searchText" ng-change="search()">
+    </label> -->
+    <!-- <search-box align="left"></search-box> -->
+    <div style="float:left; width:auto;">
+      <button class="btn" style="width:75px; margin: 8px 0 0 5px;" ng-click="search()">
+        <span class="demoUrl">
+          Search
+        </span>
+      </button>
       <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."></nit-advanced-searchbox>
+
     </div>
-
-  </header>
-
-
-
-  <nav class="side-bar">
-    <side-bar></side-bar>
-  </nav>
-
-  <div class="body-container" style="float:left;">
-    <!-- Dispalying the Results -->
-    <!-- <div>
-      <label>
-        Username: <input type="text" ng-model="username" value="brandon"/>
-      </label>
-      <label>
-        Password: <input type="password" ng-model="password" value="Batman"/>
-      </label>
-      <label>
-        Realm: <input type="text" ng-model="realm" value="external"/>
-      </label>
-      <button ng-click="search()">Search</button>
-    </div> -->
-
-
-    <div ng-if="searchText">
-      <b>Search Results For: </b> {{ searchText }}
-    </div>
-    <table class="table table-striped">
-      <tbody>
-        <tr ng-repeat="demo in demodata.documents | orderBy:'score'">
-          <td>
-            <demo-thumbnail></demo-thumbnail>
-          </td>
-          <td style="color:#232F6B">
-            <demo-summary></demo-summary>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
+
+</header>
+
+
+
+<nav class="side-bar">
+  <side-bar></side-bar>
+</nav>
+
+<div class="body-container" style="float:left;">
+  <!-- Dispalying the Results -->
+  <!-- <div>
+  <label>
+  Username: <input type="text" ng-model="username" value="brandon"/>
+</label>
+<label>
+Password: <input type="password" ng-model="password" value="Batman"/>
+</label>
+<label>
+Realm: <input type="text" ng-model="realm" value="external"/>
+</label>
+<button ng-click="search()">Search</button>
+</div> -->
+
+
+<div ng-if="searchText">
+  <b>Search Results For: </b> {{ searchText }}
+</div>
+<table class="table table-striped">
+  <tbody>
+    <tr ng-repeat="demo in demodata.documents | orderBy:'score'">
+      <td>
+        <demo-thumbnail></demo-thumbnail>
+      </td>
+      <td style="color:#232F6B">
+        <demo-summary></demo-summary>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </body>
 </html>

@@ -1,38 +1,3 @@
-<!-- <form>
-<table>
-<tr>
-<th colspan=2>Types</th>
-<th><span class="filter-and"> &amp;</span></th>
-<th><span class="filter-not"> !</span></th>
-</tr>
-<tr>
-<td>Data Discovery Accelerator</td>
-<td>(1)</td>
-<td><span class="filter-and"><input type="radio" name="Data Discovery Accelerator" value="include"/></span></td>
-<td><span class="filter-not"><input type="radio" name="Data Discovery Accelerator" value="exclude"/></span></td>
-</tr>
-<tr>
-<td>Unified Information Access</td>
-<td>(2)</td>
-<td><span class="filter-and"><input type="radio" type="radio" name="Unified Information Access" value="include"/></span></td>
-<td><span class="filter-not"><input type="radio" type="radio" name="Unified Information Access" value="exclude"/></span></td>
-</tr>
-<tr>
-<td>Content Analytics</td>
-<td>(3)</td>
-<td><span class="filter-and"><input type="radio" type="radio" name="Content Analytics" value="include"/></span></td>
-<td><span class="filter-not"><input type="radio" type="radio" name="Content Analytics" value="exclude"/></span></td>
-</tr>
-<tr>
-<td>Business Intelligence Tools</td>
-<td>(4)</td>
-<td><span class="filter-and"><input type="radio" type="radio" name="Business Intelligence Tools" value="include"/></span></td>
-<td><span class="filter-not"><input type="radio" type="radio" name="Business Intelligence Tools" value="exclude"/></span></td>
-</tr>
-<tr>
-<th colspan=4>Verticals</th>
-</tr>
-</table> -->
 <div ng-repeat="facet in facets" class="facet-bar">
   <h4 >{{ facet.displayName }}</h4>
   <table>
@@ -41,19 +6,15 @@
         <input type="checkbox"
         style="width:10px; height:10px;"
         ng-model="val.active"
-        ng-change="handleCheckboxChange(facet, val)"
-        >
+        ng-change="handleCheckboxChange(facet, val)"/>
       </td>
       <td style="width:100px; padding:5px; font-size:12px;">
         {{ val.valueName }}
-
       </td>
       <td style="width:50px; passing:5px; text-align:right;">
         ({{ val.count }})
-
       </td>
     </tr>
     <tr></tr>
   </table>
 </div>
-<!-- </form> -->
