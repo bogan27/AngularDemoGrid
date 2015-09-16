@@ -22,8 +22,8 @@ angular.module('angular-advanced-searchbox', [])
             replace: true,
             templateUrl: 'partials/angular-advanced-searchbox.html',
             controller: [
-                '$scope', '$rootScope','$attrs', '$element', '$timeout', '$filter',
-                function ($scope, $rootScope, $attrs, $element, $timeout, $filter) {
+                '$scope', '$http', '$rootScope','$attrs', '$element', '$timeout', '$filter',
+                function ($scope, $http, $rootScope, $attrs, $element, $timeout, $filter) {
 
                     $scope.placeholder = $scope.placeholder || 'Search ...';
                     $scope.searchParams = [];
@@ -119,6 +119,47 @@ angular.module('angular-advanced-searchbox', [])
 
                         updateModel('add', searchParam.key, value);
                     };
+
+                    $scope.autocomplete = function(){
+                      $( "#value" ).autocomplete({
+                        source: $scope.acSource
+                      });
+                      // $( "#Feature" ).autocomplete({
+                      //   source: $scope.acSource
+                      // });
+                      // $( "#Demo Type" ).autocomplete({
+                      //   source: $scope.acSource
+                      // });
+                    }
+                    $scope.updateAutoComplete = function(searchParam){
+                      var q = searchParam.value;
+                      if(searchParam.key === 'vertical'){
+                        var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/verticals?q=";
+                      }
+                      if(searchParam.key === 'feature'){
+                        var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/features?q=";
+                      }
+                      if(searchParam.key === 'demoType'){
+                        var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/demotype?q=";
+                      }
+                      var fullUrl = baseUrl.concat(q);
+                      console.log("fullUrl: " + fullUrl);
+                      $http.get(fullUrl).success(function(response){
+                        makeACSource(response);
+                      });
+                    };
+
+                    function makeACSource(jsonData){
+                      $scope.acSource = [];
+                      for(d in jsonData){
+                        var entry = jsonData[d].label;
+                        console.log("Entry: " + entry);
+                        $scope.acSource.push(entry);
+                        console.log("acSource: " + $scope.acSource);
+                      }
+                      $rootScope.acSource = $scope.acSource;
+                      console.log($scope.acSource);
+                    }
 
                     $scope.removeSearchParam = function (index) {
                         if (index === undefined)

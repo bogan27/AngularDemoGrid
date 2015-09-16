@@ -9,14 +9,19 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src = "js/app.js"></script>
   <script src = "js/angular-advanced-searchbox.js"></script>
+  <!-- <script type="text/javascript" src="js/autocomplete.js"></script>
+  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script> -->
+  <!-- <script type="text/javascript" src="js/autocomplete-app.js"></script> -->
   <!-- <script src = "js/angular-base64.min"></script> -->
   <title>Demonstration Portal</title>
 
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/angular-advanced-searchbox.css">
+  <link rel="stylesheet" href="css/autocomplete.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -61,19 +66,7 @@
 </nav>
 
 <div class="body-container" style="float:left;">
-  <!-- Dispalying the Results -->
-  <!-- <div>
-  <label>
-  Username: <input type="text" ng-model="username" value="brandon"/>
-</label>
-<label>
-Password: <input type="password" ng-model="password" value="Batman"/>
-</label>
-<label>
-Realm: <input type="text" ng-model="realm" value="external"/>
-</label>
-<button ng-click="search()">Search</button>
-</div> -->
+  <input type="text" ng-keydown="autocomplete()" id="testcase"/>
 
 
 <div ng-if="searchText">

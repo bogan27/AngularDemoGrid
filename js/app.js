@@ -4,6 +4,13 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   window.MY_SCOPE = $scope;
   window.rootScope = $rootScope;
 
+  $scope.autocomplete = function(){
+    var availableTags = ["Oil and Gas", "Online"];
+    $( "#testcase" ).autocomplete({
+      source: availableTags
+    });
+  };
+
   $scope.searchText = "*";
   $rootScope.initSearch = function(text) {
     $scope.searchText = text;
@@ -57,9 +64,9 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   $scope.availableSearchParams = [
     { key: "vertical", name: "Vertical", placeholder: "Vertical..." },
     { key: "feature", name: "Feature", placeholder: "Feature..." },
-    { key: "demoType", name: "Demo Type", placeholder: "Demo type..." },
-    { key: "filename", name: "File Name", placeholder: "Name..." }
+    { key: "demoType", name: "Demo Type", placeholder: "Demo type..." }
   ];
+
   //
   // var createAuthString = function(username, password){
   //   var authBase = "Base ";
