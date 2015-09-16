@@ -129,6 +129,10 @@
               select: function( event, ui ) {
                 $scope.searchParams[index].value = ui.item.value;
                 $scope.searchParamValueChanged(searchParam);
+              },
+              focus: function( event, ui ) {
+                $scope.searchParams[index].value = ui.item.value;
+                $scope.searchParamValueChanged(searchParam);
               }
             });
           };
