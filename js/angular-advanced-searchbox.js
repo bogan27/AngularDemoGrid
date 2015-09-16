@@ -120,17 +120,14 @@ angular.module('angular-advanced-searchbox', [])
                         updateModel('add', searchParam.key, value);
                     };
 
-                    $scope.autocomplete = function(){
-                      $( "#value" ).autocomplete({
-                        source: $scope.acSource
+                    $scope.autocomplete = function(key){
+                      var availableTags = $scope.acSource;
+                      var id = "#".concat(key);
+                      $( id ).autocomplete({
+                        source: availableTags
                       });
-                      // $( "#Feature" ).autocomplete({
-                      //   source: $scope.acSource
-                      // });
-                      // $( "#Demo Type" ).autocomplete({
-                      //   source: $scope.acSource
-                      // });
-                    }
+                    };
+
                     $scope.updateAutoComplete = function(searchParam){
                       var q = searchParam.value;
                       if(searchParam.key === 'vertical'){

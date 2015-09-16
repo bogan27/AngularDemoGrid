@@ -25,14 +25,12 @@
         placeholder="{{searchParam.placeholder}}" /></autocomplete> -->
         <input name="value"
         type="text"
-        id="{{searchParam.name}}"
-        typeahead="suggestion for suggestion in acSource | filter:$viewValue"
-        autocompletable
+        id="{{searchParam.key}}"
         class='container-fluid'
         nit-auto-size-input
         nit-set-focus="searchParam.editMode"
         ng-keydown="keydown($event, $index)"
-        ng-keyup="autocomplete()"
+        ng-keyup="autocomplete(searchParam.key)"
         ng-blur="leaveEditMode($index)"
         ng-if="searchParam.editMode"
         ng-change="searchParamValueChanged(searchParam); updateAutoComplete(searchParam)"
