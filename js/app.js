@@ -21,18 +21,9 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
       $scope.initFacets();
     }
     $scope.updateSearchParams();
-    // if(!angular.isUndefined($scope.searchParams) && !angular.isUndefined($scope.searchParams['query'])){
-    //   $scope.searchText = $scope.searchParams['query'];
-    // }
-
     var url = createUrl();
-    //url = encodeURIComponent(url);
-    // if(!$rootScope.authString){
-    //   var authString = createAuthString($scope.username, $scope.password);
-    // }
-    // $http.defaults.headers.common['Authorization'] = 'Basic ' + $scope.username + ':' + $scope.password;
     console.log("Query: "+ url);
-    $http.get(url)//, {headers: {'Authorization': authString}})
+    $http.get(url)
     .success(function(response) {
       $scope.demodata = response;
       $scope.setTotalCount();
@@ -67,30 +58,14 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     { key: "demoType", name: "Demo Type", placeholder: "Demo type..." }
   ];
 
-  //
-  // var createAuthString = function(username, password){
-  //   var authBase = "Base ";
-  //   $http.defaults.headers.common.get = {'Authorization' : authBase.concat(authString)};
-  //   var rawString = username.concat(":").concat(password);
-  //   var authString = btoa(rawString);
-  //   authString = authBase.concat(authString);
-  //   console.log("$rootScope.authString = " + authString);
-  //   // $rootScope.authString = authString;
-  //   $rootScope.authString = authString;
-  //   return authString;
-  // };
-
   // Creates the URL for the RESTful request from the Attivio Instance
   var createUrl = function(){
-    // var head = "http://acevm0625.lab.attivio.com:17000/rest/searchApi/simpleCgi?q=";
     var head = "http://acevm0625.lab.attivio.com/DemoGrid/search?q=";
-    //setSearchText();
     var q = $scope.searchText.replace(/ /g, "+");
     var tail = "&workflow=searchScripts";
     var facetPart = constructFacetFilters();
-    //var userPart = constructUserPart();
     console.log("facetPart is: " + facetPart);
-    var fullQuery = head.concat('"' + q + '"').concat(tail).concat(facetPart);//.concat(userPart);
+    var fullQuery = head.concat('"' + q + '"').concat(tail).concat(facetPart);
     return fullQuery;
   };
 
@@ -108,26 +83,7 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
       console.log("Used default value: *");
     }
   };
-  // var constructUserPart = function(){
-  //   var part = "&username=";
-  //   return part.concat($scope.username).concat("&realm=").concat($scope.realm);
-  // }
 
-  // Constructs the part of the RESTful request that filters on facets
-  // var constructFacetFilters = function(){
-  //   var query="";
-  //   if ($scope.facets.length > 0 && confirmActiveFacets()){
-  //     for(f in $scope.facets){
-  //       query = makeFirstFacetFilter($scope.facets[f], query);
-  //     }
-  //     query = query.substring(0, query.length - 5);
-  //     for(f in $scope.facets){
-  //       query = makeSecondFacetFilter($scope.facets[f], query);
-  //     }
-  //   }
-  //   $rootScope.facets = $scope.facets;
-  //   return query;
-  // };
   var constructFacetFilters = function(){
     var query="";
     if ($scope.facets.length > 0 && confirmActiveFacets()){
@@ -179,37 +135,6 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     }
   }
 
-  // The facet filter part of the RESTful request has two parts.
-  // This constructs the first.
-  // var makeFirstFacetFilter = function(facet, query){
-  //   for (v in facet.activeValues){
-  //     var name = facet.activeValues[v];
-  //     if(name === "All"){
-  //       return query;
-  //     }
-  //     else {
-  //       newQ = facet.fieldName.concat(":").concat('"' + name + '"').concat("__,__");
-  //       query = query.concat("&facetFilters=").concat(newQ);
-  //     }
-  //   }
-  //   return query;
-  // };
-  //
-  // // This constructs the second part of the facet filter part
-  // // of the RESTful request.
-  // var makeSecondFacetFilter = function(facet, query){
-  //   for (v in facet.activeValues){
-  //     var name = facet.activeValues[v];
-  //     if(name === "All"){
-  //       return query;
-  //     }
-  //     else {
-  //       query = query.concat("&facet.filter=").concat(facet.fieldName).concat(":").concat('"'+ name + '"');//name.replace(" ", "+"));
-  //     }
-  //   }
-  //   return query;
-  // };
-
   // Sets the total count of results returned in the initial query. This can
   // Be used for the count to display next to the "All" values for facets.
   $scope.setTotalCount = function(){
@@ -246,14 +171,6 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     facet.updateActiveValues(val);
     $scope.search();
   };
-
-  // .config(['$httpProvider', function($httpProvider) {
-  //     $httpProvider.defaults.headers.common['Authorization'] = 'Basic brandon:Batman';
-  // }])
-  //
-  // .run(['$http', '$rootScope', function($http, $rootScope) {
-  //     $http.defaults.headers.common['Authorization'] = $rootScope.authString;
-  // }])
 }])
 ///////////////////////////////////////
 // FACTORIES //
@@ -363,9 +280,6 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     this.activeValues = [];
     for (v in this.values){
       val = this.values[v];
-      // console.log("Test: " + val.valueName);
-      // console.log("Target: " + displayName);
-      // console.log("Match: " + (val.valueName === displayName));
       if(val.valueName === displayName){
         console.log("Match! " + "Value name: " + val.valueName + " displayName: " + displayName);
         val.active = true;
@@ -451,11 +365,7 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
 ///////////////////////////////////////
 
 .directive('sideBar', function () {
-  // function link($scope){
-  //   $scope.evalAsync($scope.populateFacets($scope.facets));
-  // }
   return {
-    // link: link,
     restrict: 'E',
     templateUrl: 'partials/side-bar.html'
   }

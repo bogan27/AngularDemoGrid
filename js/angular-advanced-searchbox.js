@@ -133,6 +133,10 @@
               focus: function( event, ui ) {
                 $scope.searchParams[index].value = ui.item.value;
                 $scope.searchParamValueChanged(searchParam);
+              },
+              messages: {
+                noResults: '',
+                results: function() {}
               }
             });
           };
