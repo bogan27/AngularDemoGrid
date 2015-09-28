@@ -22,8 +22,8 @@
       replace: true,
       templateUrl: 'partials/angular-advanced-searchbox.html',
       controller: [
-        '$scope', '$http', '$rootScope','$attrs', '$element', '$timeout', '$filter',
-        function ($scope, $http, $rootScope, $attrs, $element, $timeout, $filter) {
+        '$scope', '$http','$attrs', '$element', '$timeout', '$filter',
+        function ($scope, $http, $attrs, $element, $timeout, $filter) {
 
           $scope.placeholder = $scope.placeholder || 'Search ...';
           $scope.searchParams = [];
@@ -167,7 +167,6 @@
               $scope.acSource.push(entry);
               console.log("acSource: " + $scope.acSource);
             }
-            $rootScope.acSource = $scope.acSource;
             console.log($scope.acSource);
           }
 

@@ -1,54 +1,12 @@
-angular.module('demoApp', ['angular-advanced-searchbox'])
+///////////////////////////////////////////////////////////////////////////////
+//////////  This File Is Not Yet Used For Anything ////////////////////////////
+//////////  The logic in this file stil resides in app.js /////////////////////
+//////////  Refactoring in Progress... ////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-.controller('gridCtrl', ['$scope', '$http','Facet', 'searchservice', function($scope, $http, Facet, searchservice) {
-
-  //This is for testing purposes - any $scope variable can be accessed
-  // in the console by using MY_SCOPE.variable
-  window.MY_SCOPE = $scope;
-
-  // Note: This function is called from index.html when the page loads.
-  // When the page loads, it executes a search. This results in a search for
-  // "all" (*) so the users initially sees all demos available to them.
-  $scope.initialize = function(){
-    $scope.searchText = "*";
-    initFacets();
-    $scope.availableSearchParams = [
-      { key: "vertical", name: "Vertical", placeholder: "Vertical..." },
-      { key: "feature", name: "Feature", placeholder: "Feature..." },
-      { key: "demoType", name: "Demo Type", placeholder: "Demo type..." }
-    ];
-    $scope.search();
-  }
-
-  // Note: This function is called from index.html
-  // Calls the steps to prepare the information necessary for searching,
-  // Then calls the function to execute the search with the constructed URL
-  $scope.search = function(){
-    updateSearchParams();
-    var url = createUrl();
-    console.log("Query: "+ url);
-    getSearchResults(url);
-  };
-
-  // The following two functions utilize the searchservice to execute the search.
-  // Their format follows the Angular Style Guide found here:
-  // https://github.com/johnpapa/angular-styleguide
-  function getSearchResults(url){
-    return useSearchService(url).then(function(){
-      console.log('Successfully returned search results.');
-    });
-  }
-  // Once the results are returned, functions are called to update the facet
-  // dispays in the sidebar
-  function useSearchService(url) {
-    return searchservice.executeSearch(url)
-    .then(function(data) {
-      $scope.demodata = data;
-      updateFacets();
-      return $scope.demodata;
-    });
-  }
-
+angular
+.module('sideBar', )
+.controller('sidebarCtrl', ['Facet', 'Value', function(Facet, Value) {
   // Updates the facet checkboxes on the left sidebar with any facet
   // specifications in the Advanced Search Box at the top of the page
   function updateSearchParams() {
@@ -118,10 +76,10 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   // facets selected to display.
   function confirmActiveFacets() {
     totalActiveValues = 0;
-      for (f in $scope.facets){
-        facets[f].setActiveValues();
-        totalActiveValues =  totalActiveValues + facets[f].activeValues.length;
-      }
+    for (f in $scope.facets){
+      facets[f].setActiveValues();
+      totalActiveValues =  totalActiveValues + facets[f].activeValues.length;
+    }
     return (totalActiveValues > 0);
   }
 
@@ -156,9 +114,9 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   };
 }])
 
-///////////////////////////////////////
-// DIRECTIVES //
-///////////////////////////////////////
+.factory('sidebarService', ['Facet', 'Value', function(Facet, Value) {
+  //Will need a factory to return facet data, and a serivce to process search results
+}])
 
 .directive('sideBar', function () {
   return {
@@ -166,24 +124,3 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     templateUrl: 'partials/side-bar.html'
   }
 })
-
-.directive('searchBox', function () {
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/search-box.html'
-  }
-})
-
-.directive('demoThumbnail', function () {
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/demo-thumbnail.html'
-  }
-})
-
-.directive('demoSummary', function () {
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/demo-summary.html'
-  }
-});

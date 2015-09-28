@@ -13,10 +13,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src = "js/app.js"></script>
   <script src = "js/angular-advanced-searchbox.js"></script>
-  <!-- <script type="text/javascript" src="js/autocomplete.js"></script>
-  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script> -->
-  <!-- <script type="text/javascript" src="js/autocomplete-app.js"></script> -->
-  <!-- <script src = "js/angular-base64.min"></script> -->
+  <script src = "js/searchservice.js"></script>
+  <script src = "js/facetFactory.js"></script>
+  <script src = "js/valueFactory.js"></script>
+
   <title>Demonstration Portal</title>
 
   <link rel="stylesheet" href="css/main.css">
@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="wrapper" ng-app="demoApp" ng-controller="gridCtrl" ng-init="search();">
+<body class="wrapper" ng-app="demoApp" ng-controller="gridCtrl" ng-init="initialize();">
 
   <header class="header-container">
     <div class="header_logo">

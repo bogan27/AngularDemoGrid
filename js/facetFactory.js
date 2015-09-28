@@ -1,12 +1,5 @@
-angular.module('facets', [])
-
-.controller('facetCtrl', [function(){
-
-}])
-
-///////////////////////////////////////
-// FACTORIES //
-///////////////////////////////////////
+angular
+.module('demoApp')
 .factory("Facet", ['Value', function(Value) {
   // The Constructor
   // Takes a display name, a field name (should match that found in the
@@ -56,9 +49,6 @@ angular.module('facets', [])
     if (this.values.length === 0){
       this.makeNewAllValue(totalCount);
     }
-    // else{
-    //   this.values[0].count = totalCount;
-    // }
   };
 
   // Searches for an existing value that matches newVal, and if found, updates
@@ -92,6 +82,7 @@ angular.module('facets', [])
       val = this.values[v];
       val.active = false;
     }
+    this.activeValues = [];
   };
 
   Facet.prototype.setActiveValues = function(){
@@ -107,24 +98,19 @@ angular.module('facets', [])
   Facet.prototype.setSingleActiveValue = function(displayName){
     displayName = displayName.trim();
     var updateComplete = false;
+    this.deactivateAll();
     this.activeValues = [];
     for (v in this.values){
       val = this.values[v];
-      // console.log("Test: " + val.valueName);
-      // console.log("Target: " + displayName);
-      // console.log("Match: " + (val.valueName === displayName));
       if(val.valueName === displayName){
-        console.log("Match! " + "Value name: " + val.valueName + " displayName: " + displayName);
         val.active = true;
-        console.log("The val has been set to active: " + val.active);
         this.activeValues.push(val.valueName);
-        console.log("Length of active values: " + this.activeValues.length);
         updateComplete = this.updateActiveValues(val);
-        console.log("Called updateActiveValues(the value)");
       }
     }
     return updateComplete
   };
+
   // Update this Facet's list of names of active values
   Facet.prototype.updateActiveValues = function(toggledVal){
     // Reset the list of active values
@@ -157,6 +143,7 @@ angular.module('facets', [])
     }
     return true;
   };
+
   Facet.prototype.setAllActive = function(){
     for (v in this.values){
       val = this.values[v];
@@ -164,43 +151,6 @@ angular.module('facets', [])
       this.activeValues.push(val.valueName);
     }
   };
+
   return Facet;
 }])
-
-.factory('Value', function(){
-
-  var Value = function(valueName, count, active){
-    this.valueName = valueName;
-    this.count = count;
-    this.active = active;
-  };
-
-  Value.prototype.getName = function() {
-    return this.valueName;
-  };
-
-  Value.prototype.getCount = function() {
-    return this.count;
-  };
-
-  Value.prototype.getIsActive = function() {
-    return this.active;
-  };
-
-  return Value;
-})
-
-///////////////////////////////////////
-// DIRECTIVES //
-///////////////////////////////////////
-
-.directive('sideBar', function () {
-  // function link($scope){
-  //   $scope.evalAsync($scope.populateFacets($scope.facets));
-  // }
-  return {
-    // link: link,
-    restrict: 'E',
-    templateUrl: 'partials/side-bar.html'
-  }
-})
