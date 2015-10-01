@@ -1,9 +1,20 @@
-<h3>{{ demo.fields.demoName[0] }}</h3>
+<h3><a href="{{ demo.fields.demoUrl[0] }}">{{ demo.fields.demoName[0] }}</a></h3>
 <p style="align:left;">{{ demo.fields.teaser[0] }}</p>
 <div>
-  <div style="float:left; padding:5px;" ng-repeat="vertical in demo.fields.verticals">
-    <button class="btn">{{ vertical }}</button>
-  </div>
+  <table style="float:left; padding:5px;">
+    <tr ng-show="demo.fields.verticals">
+      <td style="padding:1px 4px 1px 0px;"><b>Verticals:</b></td>
+      <td>{{ makeFacetText(demo.fields.verticals) }}</td>
+    </tr>
+    <tr ng-show="demo.fields.features">
+      <td style="padding:1px 4px 1px 0px;"><b>Features:</b></td>
+      <td>{{ makeFacetText(demo.fields.features) }}</td>
+    </tr>
+    <tr ng-show="demo.fields.demoType">
+      <td style="padding:1px 4px 1px 0px;"><b>Demo Type:</b></td>
+      <td>{{ makeFacetText(demo.fields.demoType) }}</td>
+    </tr>
+  </table>
   <div style="float:right; padding:5px;">
     <a href="{{ demo.fields.demoUrl[0] }}" style="float:right;" target="_blank">
       <button class="btn">
@@ -30,14 +41,14 @@
 
 
   <!-- <div style="float:right; padding:5px;">
-    <button class="btn">
-      <a href="http://acevm0625.lab.attivio.com:17000/sail/download?id=SCRIPTS-/home/brandon.bogan/data-agent/projects/demoGrid/default/resources/scripts/{{demo.fields.demoName[0]}}">
-        <u>
-          <span class="demoUrl">
-            Download Script
-          </span>
-        </u>
-      </a>
-    </button>
-  </div>
+  <button class="btn">
+  <a href="http://acevm0625.lab.attivio.com:17000/sail/download?id=SCRIPTS-/home/brandon.bogan/data-agent/projects/demoGrid/default/resources/scripts/{{demo.fields.demoName[0]}}">
+  <u>
+  <span class="demoUrl">
+  Download Script
+</span>
+</u>
+</a>
+</button>
+</div>
 </div> -->

@@ -27,7 +27,6 @@
 
           $scope.placeholder = $scope.placeholder || 'Search ...';
           $scope.searchParams = [];
-          $scope.searchQuery = '*';
           $scope.setSearchFocus = false;
           var searchThrottleTimer;
           var changeBuffer = [];

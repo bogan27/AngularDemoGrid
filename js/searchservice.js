@@ -23,7 +23,7 @@ function searchservice($http) {
     }
 
     function searchFailed(error) {
-      console.log('XHR Failed for searchservice.search().' + error.data);
+      console.log('Http Request Failed for searchservice.search(): ' + error.data);
     }
   };
 }

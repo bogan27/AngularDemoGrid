@@ -118,10 +118,10 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   // facets selected to display.
   function confirmActiveFacets() {
     totalActiveValues = 0;
-      for (f in $scope.facets){
-        facets[f].setActiveValues();
-        totalActiveValues =  totalActiveValues + facets[f].activeValues.length;
-      }
+    for (f in $scope.facets){
+      facets[f].setActiveValues();
+      totalActiveValues =  totalActiveValues + facets[f].activeValues.length;
+    }
     return (totalActiveValues > 0);
   }
 
@@ -154,6 +154,17 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     facet.updateActiveValues(val);
     $scope.search();
   };
+
+  // Given a list of facet values, returns a string of
+  // values seperated by " | "
+  $scope.makeFacetText = function(values){
+    var response = ""
+    for(v in values){
+      value = values[v];
+      response = response.concat(" " + value + " |");
+    }
+    return response.substring(0, response.length - 1);
+  }
 }])
 
 ///////////////////////////////////////
