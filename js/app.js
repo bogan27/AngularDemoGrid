@@ -1,4 +1,4 @@
-angular.module('demoApp', ['angular-advanced-searchbox'])
+angular.module('demoApp', ['angular-advanced-searchbox', 'sideBar'])
 
 .controller('gridCtrl', ['$scope', '$http','Facet', 'searchservice', function($scope, $http, Facet, searchservice) {
 
@@ -45,7 +45,6 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
     .then(function(data) {
       $scope.demodata = data;
       updateFacets();
-      return $scope.demodata;
     });
   }
 
@@ -54,7 +53,12 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
   function updateSearchParams() {
     if(!angular.isUndefined($scope.searchParams)){
       if(!angular.isUndefined($scope.searchParams['query'])){
-        $scope.searchText = $scope.searchParams['query'];
+        if($scope.searchParams['query'].length < 1){
+          $scope.searchText = "*";
+        }
+        else{
+          $scope.searchText = $scope.searchParams['query'];
+        }
       }
       if(!angular.isUndefined($scope.searchParams['vertical'])){
         $scope.facets[0].setSingleActiveValue($scope.searchParams['vertical']);
@@ -70,12 +74,12 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
 
   // Creates the URL for the RESTful request from the Attivio Instance
   function createUrl() {
-    var head = "http://acevm0625.lab.attivio.com/DemoGrid/search?q=";
+    var head = "http://acevm0695.lab.attivio.com/DemoGrid/search?q=";
     var q = $scope.searchText.replace(/ /g, "+");
-    var tail = "&workflow=searchScripts";
+    var workflow = "&workflow=searchScripts";
     var facetPart = constructFacetFilters();
     console.log("facetPart is: " + facetPart);
-    var fullQuery = head.concat('"' + q + '"').concat(tail).concat(facetPart);
+    var fullQuery = head.concat('"' + q + '"').concat(workflow).concat(facetPart);
     return fullQuery;
   };
 
@@ -109,21 +113,12 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
         partialFilter = partialFilter.concat(facet.fieldName + ":" + '"' + name + '"' + ",");
       }
     }
-    query = query.concat("OR(" + partialFilter);
-    query = query.substring(0, query.length - 1).concat("),");
+    if(partialFilter.length > 0){
+      query = query.concat("OR(" + partialFilter);
+      query = query.substring(0, query.length - 1).concat("),");
+    }
     return query;
   };
-
-  // Returns whether or not there are active facets, meaning
-  // facets selected to display.
-  function confirmActiveFacets() {
-    totalActiveValues = 0;
-    for (f in $scope.facets){
-      facets[f].setActiveValues();
-      totalActiveValues =  totalActiveValues + facets[f].activeValues.length;
-    }
-    return (totalActiveValues > 0);
-  }
 
   // Instructs each facet in $scope.facets to update its values/counts based on
   // the current search results.
@@ -164,6 +159,12 @@ angular.module('demoApp', ['angular-advanced-searchbox'])
       response = response.concat(" " + value + " |");
     }
     return response.substring(0, response.length - 1);
+  }
+
+  $scope.onKeyDown = function($event){
+    if($event === 13){
+      $scope.search();
+    }
   }
 }])
 

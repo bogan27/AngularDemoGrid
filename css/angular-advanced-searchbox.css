@@ -74,11 +74,12 @@
 
     .advancedSearchBox .search-parameter-input {
         display: inline-block;
-        width: auto;
+        /*width: inherit;*/
         height: 24px;
         border: 0;
         margin: 0;
         padding: 0;
+        z-index: 100;
     }
 
         .advancedSearchBox .search-parameter-input:focus {
@@ -91,17 +92,18 @@
     .advancedSearchBox .search-parameter-suggestions {
         cursor: auto;
         display: block;
+        padding-top: 10px;
     }
 
         .advancedSearchBox .search-parameter-suggestions .title {
             display: block;
             float: left;
             height: 25px;
-            margin: 7px 7px 0 0;
+            margin: 0px 7px 0 0;
             background-color: transparent;
             color: #888;
             font-weight: bold;
-            padding: 0 5px;
+            padding: 0 5px 0 0;
             font-size: 14px;
             line-height: 25px;
         }

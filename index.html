@@ -16,6 +16,7 @@
   <script src = "js/searchservice.js"></script>
   <script src = "js/facetFactory.js"></script>
   <script src = "js/valueFactory.js"></script>
+  <script src = "js/sidebar.js"></script>
 
   <title>Demonstration Portal</title>
 
@@ -33,7 +34,7 @@
 
 </head>
 
-<body class="wrapper" ng-app="demoApp" ng-controller="gridCtrl" ng-init="initialize();">
+<body class="wrapper" ng-app="demoApp" ng-controller="gridCtrl" ng-init="initialize();" ng-keydown="onKeyDown($event);">
 
   <header class="header-container">
     <div class="header_logo">
@@ -52,7 +53,7 @@
           Search
         </span>
       </button>
-      <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."></nit-advanced-searchbox>
+      <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..." ng-change="search()" ng-keydown="onKeyDown($event)"></nit-advanced-searchbox>
 
     </div>
   </div>
@@ -62,6 +63,7 @@
 
 
 <nav class="side-bar">
+  <!-- <side-bar-directive demodata='demodata' facets='facets' search='search()'></side-bar-directive> -->
   <side-bar></side-bar>
 </nav>
 

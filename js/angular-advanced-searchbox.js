@@ -62,6 +62,7 @@
           }, true);
 
           $scope.searchParamValueChanged = function (param) {
+            console.log(param);
             updateModel('change', param.key, param.value);
           };
 
@@ -143,13 +144,13 @@
           $scope.updateAutoComplete = function(searchParam){
             var q = searchParam.value;
             if(searchParam.key === 'vertical'){
-              var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/verticals?q=";
+              var baseUrl = "http://acevm0695.lab.attivio.com/DemoGrid/autocomplete/verticalsProvider?q=";
             }
             if(searchParam.key === 'feature'){
-              var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/features?q=";
+              var baseUrl = "http://acevm0695.lab.attivio.com/DemoGrid/autocomplete/featuresProvider?q=";
             }
             if(searchParam.key === 'demoType'){
-              var baseUrl = "http://acevm0625.lab.attivio.com/DemoGrid/autocomplete/demotype?q=";
+              var baseUrl = "http://acevm0695.lab.attivio.com/DemoGrid/autocomplete/demoTypeProvider?q=";
             }
             var fullUrl = baseUrl.concat(q);
             console.log("fullUrl: " + fullUrl);
@@ -211,7 +212,11 @@
               $scope.setSearchFocus = true;
             }
           };
-
+          $scope.textKeydown = function($event, searchQuery){
+            if($event === 13){
+              $scope.searchQueryChanged(searchQuery);
+            }
+          }
           $scope.keydown = function(e, searchParamIndex) {
             var handledKeys = [8, 9, 13, 37, 39];
             if (handledKeys.indexOf(e.which) === -1)
@@ -234,7 +239,9 @@
 
             } else if (e.which == 13) { // enter
               $scope.editNext(searchParamIndex);
-
+              // console.log(searchParamIndex);
+              // if (searchParamIndex !== undefined){
+              //$scope.searchParamValueChanged($scope.searchParams[searchParamIndex]);
             } else if (e.which == 37) { // left
               if (cursorPosition === 0)
               $scope.editPrevious(searchParamIndex);
